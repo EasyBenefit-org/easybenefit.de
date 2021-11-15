@@ -1,0 +1,24 @@
+@import 'styles/mixins/MediaQueries';
+
+.FormContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 30px;
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+    justify-content: center;
+
+    @include ScreenSize(desktop) {
+        width: 900px;
+    }
+}
+.Box100 {
+    flex: 100%;
+}
+.Box50 {
+    flex: 100%;
+    @include ScreenSize(tablet) {
+        flex: 1;
+    }
+}

@@ -1,0 +1,16 @@
+@import 'styles/mixins/MediaQueries';
+
+.Container {
+    display: block;
+    margin: 0 auto;
+    padding: 0 15px;
+    width: 100%;
+
+    @include ScreenSize(desktop) {
+        max-width: 1200px;
+    }
+}
+.ContainerFullWidth {
+    width: 100%;
+    padding: 0 15px;
+}

@@ -1,0 +1,28 @@
+// Pixel Breakpoints for different devices
+// Mobile first, so no specific variable for mobile
+$PixelBreakpointTablet: 480px;
+$PixelBreakpointLaptop: 800px;
+$PixelBreakpointDesktop: 1200px;
+
+
+// breakpoint is the name of your mixin
+@mixin ScreenSize ($breakpoint) {
+
+    // $breakpoint is simply a variable that can have several values
+
+    @if $breakpoint==tablet {
+        @media only screen and (min-width: $PixelBreakpointTablet) {
+            @content;
+        }
+    }
+    @if $breakpoint==laptop {
+        @media only screen and (min-width: $PixelBreakpointLaptop) {
+            @content;
+        }
+    }
+    @if $breakpoint==desktop {
+        @media only screen and (min-width: $PixelBreakpointDesktop) {
+            @content;
+        }
+    }
+}

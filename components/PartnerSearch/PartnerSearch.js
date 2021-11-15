@@ -20,13 +20,17 @@ export function PartnerCard({programm}, props) {
 
 // Content
 export default function PartnerSearch({programms}) {
+
+    const first20programms = programms.slice(0, 20);
+    const next0programms = programms.slice(19, 39);
+
     return (
         <>
             <div className={styles.Search}>
                 <input placeholder="Partner suchen..."></input>
             </div>
             <div className={styles.Partners}>
-                {programms.map(programm => (
+                {first20programms.map(programm => (
                     <PartnerCard key={programm.id} programm={programm}/>
                 ))}
             </div>

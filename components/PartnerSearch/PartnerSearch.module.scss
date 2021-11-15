@@ -6,13 +6,23 @@
     display: flex;
     flex-flow: row wrap;
     position: relative;
+    justify-content: center;
     gap: 15px;
+    @include ScreenSize(tablet) {
+        gap: 20px;
+    }
     @include ScreenSize(desktop) {
         gap: 30px;
     }
     & > * {
         background: #fff;
         flex: 0 1 calc(50% - (15px * 1 / 2));
+        @include ScreenSize(tablet) {
+            flex: 0 1 calc(33.33% - (20px * 2 / 3));
+        }
+        @include ScreenSize(laptop) {
+            flex: 0 1 calc(25% - (30px * 3 / 4));
+        }
         @include ScreenSize(desktop) {
             flex: 0 1 calc(20% - (30px * 4 / 5));
         }

@@ -21,7 +21,11 @@ export async function getStaticProps() {
 export default function Privacy() {
     return (
         <>
-            <PageMetaTags/>
+            <PageMetaTags
+                title="Hilfsprojekte kostenlos unterstützen! | Alle Projekte bei EasyBenefit"
+                description="Unsere Hilfsprojekte im Überblick! ❤️ Mit jedem Online-Einkauf kostenlos gemeinnützige Projekte unterstützen! ✅ Jetzt mitmachen!"
+                canonical="/projekte"
+            />
             <PageHeaderTextCenterSimple
                 Heading="Unsere Hilfsprojekte"
                 SubHeading="Das fördern wir!"

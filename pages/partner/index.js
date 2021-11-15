@@ -30,7 +30,11 @@ export async function getStaticProps() {
 export default function Privacy({programms}) {
     return (
         <>
-            <PageMetaTags/>
+            <PageMetaTags
+                title="Partner im Überblick | EasyBenefit.de"
+                description="Bei diesen Partnern kannst du mit EasyBenefit einfach & kostenlos Gutes tun! ⚡️ Jetzt mitmachen!"
+                canonical="/partner"
+            />
             <PageHeaderTextCenterSimple
                 Heading="Unsere Partner"
                 SubHeading="Gemeinsam mehr erreichen!"

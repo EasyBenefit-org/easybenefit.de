@@ -1,0 +1,32 @@
+{
+	"_id": ObjectId("619285a65ff231c4828ab795"),
+	"name": "Booking.com",
+    "slug": "/booking",
+    "partnerType": null,
+    "partnerStatus": null,
+    "partnerNetwork": null,
+    "partnerNetworkID": null,
+    "partnerLink": "https://booking.com",
+	"published": true,
+    "images": {
+        "logo1x1": "2021-11-15T16:07:01.242Z",
+        "logo4x3": null,
+        "logo16x9": null
+    },
+    "dates": {
+        "createdAt": "2021-11-15T16:07:01.242Z",
+        "updatedAt": null,
+        "partnerSince": null,
+        "partnerUntil": null
+    },
+    "content": {
+        "Test123": "Test123"
+    }, 
+    "socialLinks": {
+        "facebook": null,
+        "twitter": null,
+        "youtube": null,
+        "linkedin": null,
+        "xing": null
+    }
+}

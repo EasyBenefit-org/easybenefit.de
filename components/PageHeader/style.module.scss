@@ -1,0 +1,26 @@
+@import 'styles/mixins/MediaQueries';
+
+.Header {
+    text-align: center;
+    margin: 0 0 35px;
+    & > h1 {
+        font-size: 2rem;
+        margin: 0;
+        @include ScreenSize(tablet) {
+            font-size: 2.5rem;
+        }
+        @include ScreenSize(laptop) {
+            font-size: 3rem;
+        }
+        @include ScreenSize(desktop) {
+            font-size: 4rem;
+        }
+    }
+    & > p {
+        font-size: 1rem;
+        @include ScreenSize(desktop) {
+            font-size: 1.5rem;
+        }
+        color: #666
+    }
+}

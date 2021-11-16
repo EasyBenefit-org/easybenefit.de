@@ -1,0 +1,64 @@
+.Navbar {
+    border-top: 2px solid #336ba8;
+    height: var(--AppNavbarHeight);
+    background: var(--AppNavbarBackgroundLight);
+    display: flex;
+    padding: 10px 15px;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 0 5px #000;
+}
+.LogoLink {
+    height: 40px;
+    width: 110px;
+    position: relative;
+    display: block;
+}
+.Logo {
+    object-fit: contain;
+    width: unset !important;
+    position: relative !important;
+    height: 100% !important;
+}
+.Nav {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-weight: bold;
+    & > * {
+        height: 36px;
+        font-size: 12px;
+        margin-left: 10px;
+        line-height: 1.5;
+        border-radius: 5em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+.UserItem {
+    background: #336ba8;
+    color: #fff;
+    padding: 3px 10px 3px 3px;
+    gap: 5px;
+}
+.NavItem {
+    color: #111;
+    padding: 0 15px;
+    &:hover {
+        background: rgb(240, 249, 255);
+    }
+}
+.active {
+    background: greenyellow !important;
+}
+.ProfilePicBox {
+    border-radius: 5em;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+}

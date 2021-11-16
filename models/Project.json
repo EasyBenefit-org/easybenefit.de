@@ -1,0 +1,34 @@
+{
+    "_id": ObjectId("619285a65ff231c4828ab795"),
+    "name": "Hilfsprojekt",
+    "slug": "/hilfsprojekt",
+    "category": null,
+    "published": false,
+    "funding": {
+        "requiered": 1000,
+        "actual": 500
+    },
+    "charities": null,
+    "image": {
+
+    },
+    "content": {
+        "description": "",
+        "detail": ""
+    },
+    "dates": {
+        "createdAt": "2021-11-15T16:07:01.242Z",
+        "updatedAt": null,
+        "fundingStarted": null,
+        "fundingEnded": null
+    },
+    "users": [
+        {
+            "user_id": null,
+            "role": null
+        }
+    ],
+    "votes": [
+        
+    ]
+}

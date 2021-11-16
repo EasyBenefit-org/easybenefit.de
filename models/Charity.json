@@ -1,0 +1,10 @@
+{
+    "_id": ObjectId("619285a65ff231c4828ab795"),
+    "name": "Hilfsprojekt",
+    "users": [
+        {
+            "user_id": null,
+            "role": null
+        }
+    ]
+}

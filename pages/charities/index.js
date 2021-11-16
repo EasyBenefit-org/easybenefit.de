@@ -1,10 +1,11 @@
 // Import Modules & Components
 import PageMetaTags from 'components/MetaTags/PageMetaTags';
 import PageHeaderTextCenterSimple from 'components/PageHeader/HeadingCenterSimple';
+import Container from 'components/Container/Container';
 // Import Styles
 
 // Content
-export default function Privacy() {
+export default function Privacy({charities}) {
     return (
         <>
             <PageMetaTags
@@ -16,6 +17,38 @@ export default function Privacy() {
                 Heading="Unsere Charities"
                 SubHeading="Diese Hilfsorganisationen sind Teil von EasyBenefit!"
             />
+            <Container>
+                {charities.length === 0 ? (
+                    <h2>Aktuell keine Charities registriert!</h2>
+                ) : (
+                    <ul>
+                        {charities.map((charity, i) => (
+                            <li key={i}>{charity.name}</li>
+                        ))}
+                    </ul>
+                )}
+            </Container>
         </>
     )
+}
+// getStaticProps - GET Charities
+export async function getStaticProps(ctx) {
+    // get the current environment
+    let dev = process.env.NODE_ENV !== 'production';
+    let { DEV_URL, PROD_URL } = process.env;
+
+    // Request partners from MongoDB via API
+    let response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/partners`);
+    // Extract the data
+    let data = await response.json();
+
+    return {
+        props: {
+            charities: data['message'],
+        },
+        // Next.js will attempt to re-generate the page:
+        // - When a request comes in
+        // - At most once every 12 hours
+        revalidate: 43200,     // in sec
+    };
 }

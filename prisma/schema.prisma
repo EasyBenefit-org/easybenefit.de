@@ -1,0 +1,176 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model AffiliateNetwork {
+  AffiliateNetworkID           Int                            @id(map: "PK_AffiliateNetwork") @default(autoincrement())
+  Name                         String                         @db.NVarChar(250)
+  ActiveFrom                   DateTime
+  ActiveTo                     DateTime?
+  CD                           DateTime                       @default(dbgenerated("sysdatetime()"), map: "DF__AffiliateNet__CD__00EA0E6F")
+  CU                           String                         @default("SYSADMIN", map: "DF__AffiliateNet__CU__01DE32A8") @db.NVarChar(250)
+  AffiliateProgram             AffiliateProgram[]
+  DonationCategoryTrackingCode DonationCategoryTrackingCode[]
+}
+
+model AffiliateProgram {
+  AffiliateProgramID     Int                    @id(map: "PK_AffiliateProgram") @default(autoincrement())
+  AffiliateNetworkID     Int
+  AffiliateProgramTypeID Int
+  Title                  String                 @db.NVarChar(250)
+  ForeignID              Int?
+  CommissionFrom         Decimal?               @db.Decimal(18, 0)
+  CommissionTo           Decimal?               @db.Decimal(18, 0)
+  CommissionUnit         String?                @db.NVarChar(30)
+  AffiliateURL           String                 @db.NVarChar(300)
+  ActiveFrom             DateTime
+  ActiveTo               DateTime?
+  CD                     DateTime               @default(dbgenerated("sysdatetime()"), map: "DF__AffiliatePro__CD__13FCE2E3")
+  CU                     String                 @default("SYSADMIN", map: "DF__AffiliatePro__CU__14F1071C") @db.NVarChar(250)
+  AffiliateNetwork       AffiliateNetwork       @relation(fields: [AffiliateNetworkID], references: [AffiliateNetworkID], onUpdate: NoAction, map: "FK_AffiliateProgram_AffiliateNetworkID")
+  AffiliateProgramType   AffiliateProgramType   @relation(fields: [AffiliateProgramTypeID], references: [AffiliateProgramTypeID], onUpdate: NoAction, map: "FK_AffiliateProgram_AffiliateProgramTypeID")
+  AffiliateProgramLogo   AffiliateProgramLogo[]
+  AffiliateTransaction   AffiliateTransaction[]
+
+  @@unique([AffiliateProgramID, AffiliateNetworkID, AffiliateProgramTypeID], map: "IX_AffiliateProgram")
+}
+
+model AffiliateProgramLogo {
+  AffiliateProgramLogoID Int              @id(map: "PK_AffiliateProgramLogo") @default(autoincrement())
+  AffiliateProgramID     Int
+  Filename               String           @db.NVarChar(250)
+  Title                  String           @db.NVarChar(250)
+  Alt                    String           @db.NVarChar(250)
+  CD                     DateTime         @default(dbgenerated("sysdatetime()"), map: "DF__AffiliatePro__CD__1B9E04AB")
+  CU                     String           @default("SYSADMIN", map: "DF__AffiliatePro__CU__1C9228E4") @db.NVarChar(250)
+  AffiliateProgram       AffiliateProgram @relation(fields: [AffiliateProgramID], references: [AffiliateProgramID], onUpdate: NoAction, map: "FK_AffiliateProgramLogo_AffiliateProgramID")
+}
+
+model AffiliateProgramType {
+  AffiliateProgramTypeID Int                @id(map: "PK_AffiliateProgramType") @default(autoincrement())
+  Name                   String             @db.NVarChar(250)
+  CD                     DateTime           @default(dbgenerated("sysdatetime()"), map: "DF__AffiliatePro__CD__17CD73C7")
+  CU                     String             @default("SYSADMIN", map: "DF__AffiliatePro__CU__18C19800") @db.NVarChar(250)
+  AffiliateProgram       AffiliateProgram[]
+}
+
+model AffiliateTransaction {
+  AffiliateTransactionID       Int                        @id(map: "PK_AffiliateTransaction") @default(autoincrement())
+  AffiliateTransactionStatusID Int
+  AffiliateProgramID           Int
+  DonationCategoryID           Int
+  CurrencyID                   Int
+  CommissionAmount             Decimal                    @db.Decimal(18, 0)
+  AffiliateTransactionDate     DateTime
+  ValidationDate               DateTime?
+  CD                           DateTime                   @default(dbgenerated("sysdatetime()"), map: "DF__AffiliateTra__CD__0C5BC11B")
+  CU                           String                     @default("SYSADMIN", map: "DF__AffiliateTra__CU__0D4FE554") @db.NVarChar(250)
+  AffiliateProgram             AffiliateProgram           @relation(fields: [AffiliateProgramID], references: [AffiliateProgramID], onUpdate: NoAction, map: "FK_AffiliateTransaction_AffiliateProgramID")
+  AffiliateTransactionStatus   AffiliateTransactionStatus @relation(fields: [AffiliateTransactionStatusID], references: [AffiliateTransactionStatusID], onUpdate: NoAction, map: "FK_AffiliateTransaction_AffiliateTransactionStatusID")
+  Currency                     Currency                   @relation(fields: [CurrencyID], references: [CurrencyID], onUpdate: NoAction, map: "FK_AffiliateTransaction_CurrencyID")
+  DonationCategory             DonationCategory           @relation(fields: [DonationCategoryID], references: [DonationCategoryID], onUpdate: NoAction, map: "FK_AffiliateTransaction_DonationCategoryID")
+
+  @@unique([AffiliateTransactionStatusID, AffiliateProgramID, DonationCategoryID, CurrencyID], map: "IX_AffiliateTransaction")
+}
+
+model AffiliateTransactionStatus {
+  AffiliateTransactionStatusID Int                    @id(map: "PK_AffiliateTransactionStatus") @default(autoincrement())
+  Name                         String                 @db.NVarChar(250)
+  CD                           DateTime               @default(dbgenerated("sysdatetime()"), map: "DF__AffiliateTra__CD__102C51FF")
+  CU                           String                 @default("SYSADMIN", map: "DF__AffiliateTra__CU__11207638") @db.NVarChar(250)
+  AffiliateTransaction         AffiliateTransaction[]
+}
+
+model Contact {
+  ContactID    Int            @id(map: "PK_Contact") @default(autoincrement())
+  Firstname    String         @db.NVarChar(250)
+  Surname      String         @db.NVarChar(250)
+  Mail         String         @db.NVarChar(250)
+  Phone        String         @db.NVarChar(250)
+  Street       String         @db.NVarChar(250)
+  Housenumber  String         @db.NVarChar(250)
+  ZIP          String         @db.NVarChar(250)
+  Place        String         @db.NVarChar(250)
+  CD           DateTime       @default(dbgenerated("sysdatetime()"), map: "DF__Contact__CD__75785BC3")
+  CU           String         @default("SYSADMIN", map: "DF__Contact__CU__766C7FFC") @db.NVarChar(250)
+  Organisation Organisation[]
+}
+
+model Currency {
+  CurrencyID           Int                    @id(map: "PK_Currency") @default(autoincrement())
+  Name                 String                 @db.NVarChar(250)
+  Code                 String                 @db.NVarChar(3)
+  Symbol               String                 @db.NVarChar(250)
+  CD                   DateTime               @default(dbgenerated("sysdatetime()"), map: "DF__Currency__CD__04BA9F53")
+  CU                   String                 @default("SYSADMIN", map: "DF__Currency__CU__05AEC38C") @db.NVarChar(250)
+  AffiliateTransaction AffiliateTransaction[]
+}
+
+model DonationCategory {
+  DonationCategoryID           Int                            @id(map: "PK_DonationCategory") @default(autoincrement())
+  Name                         String                         @db.NVarChar(250)
+  ActiveFrom                   DateTime
+  ActiveTo                     DateTime?
+  CD                           DateTime                       @default(dbgenerated("sysdatetime()"), map: "DF__DonationCate__CD__7948ECA7")
+  CU                           String                         @default("SYSADMIN", map: "DF__DonationCate__CU__7A3D10E0") @db.NVarChar(250)
+  AffiliateTransaction         AffiliateTransaction[]
+  DonationCategoryTrackingCode DonationCategoryTrackingCode[]
+  Project                      Project[]
+}
+
+model DonationCategoryTrackingCode {
+  DonationCategoryTrackingCodeID Int              @id(map: "PK_DonationCategoryTrackingCode") @default(autoincrement())
+  DonationCategoryID             Int
+  AffiliateNetworkID             Int
+  Code                           String           @db.NVarChar(250)
+  CD                             DateTime         @default(dbgenerated("sysdatetime()"), map: "DF__DonationCate__CD__7D197D8B")
+  CU                             String           @default("SYSADMIN", map: "DF__DonationCate__CU__7E0DA1C4") @db.NVarChar(250)
+  AffiliateNetwork               AffiliateNetwork @relation(fields: [AffiliateNetworkID], references: [AffiliateNetworkID], onUpdate: NoAction, map: "FK_DonationCategoryTrackingCode_AffiliateNetworkID")
+  DonationCategory               DonationCategory @relation(fields: [DonationCategoryID], references: [DonationCategoryID], onUpdate: NoAction, map: "FK_DonationCategoryTrackingCode_AffiliateProgramID")
+
+  @@unique([DonationCategoryTrackingCodeID, DonationCategoryID, AffiliateNetworkID], map: "IX_DonationCategoryTrackingCode")
+}
+
+model DonationPercentageTimespan {
+  DonationPercentageTimespanID Int       @id(map: "PK_DonationPercentageTimespan") @default(autoincrement())
+  Percentage                   Decimal   @db.Decimal(18, 0)
+  ActiveFrom                   DateTime
+  ActiveTo                     DateTime?
+  CD                           DateTime  @default(dbgenerated("sysdatetime()"), map: "DF__DonationPerc__CD__088B3037")
+  CU                           String    @default("SYSADMIN", map: "DF__DonationPerc__CU__097F5470") @db.NVarChar(250)
+}
+
+model Organisation {
+  OrganisationID Int       @id(map: "PK_Organisation") @default(autoincrement())
+  ContactID      Int
+  Name           String    @db.NVarChar(250)
+  Alias          String    @db.NVarChar(250)
+  Date           DateTime
+  CD             DateTime  @default(dbgenerated("sysdatetime()"), map: "DF__Organisation__CD__6DD739FB")
+  CU             String    @default("SYSADMIN", map: "DF__Organisation__CU__6ECB5E34") @db.NVarChar(250)
+  Contact        Contact   @relation(fields: [ContactID], references: [ContactID], onUpdate: NoAction, map: "FK_Organisation_ContactID")
+  Project        Project[]
+}
+
+model Project {
+  ProjectID          Int              @id(map: "PK_Project") @default(autoincrement())
+  OrganisationID     Int
+  DonationCategoryID Int
+  Name               String           @db.NVarChar(250)
+  Alias              String           @db.NVarChar(250)
+  AmountTarget       Decimal          @db.Decimal(18, 0)
+  AmountCurrent      Decimal          @db.Decimal(18, 0)
+  ActiveFrom         DateTime?
+  ActiveTo           DateTime?
+  CD                 DateTime         @default(dbgenerated("sysdatetime()"), map: "DF__Project__CD__71A7CADF")
+  CU                 String           @default("SYSADMIN", map: "DF__Project__CU__729BEF18") @db.NVarChar(250)
+  DonationCategory   DonationCategory @relation(fields: [DonationCategoryID], references: [DonationCategoryID], onUpdate: NoAction, map: "FK_Project_DonationCategoryID")
+  Organisation       Organisation     @relation(fields: [OrganisationID], references: [OrganisationID], onUpdate: NoAction, map: "FK_Project_OrganisationID")
+
+  @@unique([ProjectID, OrganisationID, DonationCategoryID], map: "IX_Project")
+}

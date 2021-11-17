@@ -14,21 +14,9 @@
 .ProjectCard {
     border: none;
     overflow: hidden;
-    box-shadow: 0 0 10px black;
+    box-shadow: 0 0 5px 0 rgb(0 0 0 / 10%), 0 2px 10px 0 rgb(0 0 0 / 10%);
     border-radius: 15px;
     width: 320px;
-      img {
-        width: 100%;
-      }
-      .Category {
-        position: absolute;
-        bottom: 10px;
-        left: 10px;
-        padding: 4px 10px;
-        color: #fff;
-        text-shadow: 0 0 1px rgba(0,0,0,.5);
-        font-size: 70%;
-      }
       .feature {
         position: absolute;
         top: 10px;
@@ -37,27 +25,61 @@
         color: #ffc000;
         font-size: 80%;
       }
-    .Title {
-      font-weight: 700;
-      margin: 0 0 10px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      height: 3em;
-    }
-    .Text {
-      font-size: 80%;
-    }
-    .goal {
-      font-size: 70%;
-      padding: 0 5px 5px;
-      span {
-        float: right;
-      }
-    }
     a:hover {
       text-decoration: none;
+    }
+}
+.Category {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    padding: 4px 10px;
+    color: #fff;
+    font-size: .7rem;
+    border-radius: 1em;
+    background: linear-gradient(45deg, #2f80ed, #56ccf2);
+}
+.CardBody {
+    color: #3d5170;
+}
+.Title {
+    font-weight: 700;
+    margin: 0 0 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5;   // make sure line-height is exact
+    height: 3em;        // 2x line-heigt
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    color: darken(#3d5170, 10%);
+}
+.Text {
+    font-size: .8rem;
+    margin: 0 0 10px;
+  }
+.Values {
+    display: flex;
+    justify-content: space-between;
+    font-size: .75rem;
+    margin: 0 0 -10px;
+}
+.Progress {
+    &, &::-webkit-progress-bar {
+        width: 100%;
+        height: 10px;
+        border: none;
+        background: #eee;
+        border-radius: 10px;
+        box-shadow: 0 0 5px 0 rgb(0 0 0 / 10%) inset, 0 2px 10px 0 rgb(0 0 0 / 10%) inset;
+        overflow: hidden;
+    }
+    &::-webkit-progress-value {
+        background: #00b978;
+        box-shadow: 0 0 5px 0 rgb(0 0 0 / 10%) inset, 0 2px 10px 0 rgb(0 0 0 / 10%) inset;
+    }
+    &::-moz-progress-bar {
+        background: #00b978;
+        box-shadow: 0 0 5px 0 rgb(0 0 0 / 10%) inset, 0 2px 10px 0 rgb(0 0 0 / 10%) inset;
     }
 }

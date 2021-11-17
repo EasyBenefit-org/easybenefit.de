@@ -3,11 +3,12 @@ import Container from 'components/Container/Container';
 import PageMetaTags from 'components/MetaTags/PageMetaTags';
 import PageHeaderTextCenterSimple from 'components/PageHeader/HeadingCenterSimple';
 import ProjectCard from 'components/ProjectCard';
+import SectionHeading from 'components/SectionHeading/SectionHeading';
 // Import Styles
-import styles from 'styles/pages.module.scss'
 
 // Import Prisma Client
 import prisma from 'lib/prisma';
+import Flexbox3Column from 'components/Layouts/Flexbox3Column';
 
 export async function getStaticProps() {
     // Prisma SQL lookup
@@ -41,8 +42,15 @@ export default function Privacy({projects}) {
                 SubHeading="Das fördern wir!"
             />
             <Container>
-                <h2>Aktuelle Projekte</h2>
-                <div className={styles.CardLayout}>
+                <SectionHeading
+                    heading="Aktuelle Projekte"
+                    description="
+                        Diese Projekte werden aktuell aktiv finanziert.
+                        Um unsere Resource effektiv zu bündeln, werden zur Zeit max. drei Projekte zeitgleich finanziert.
+                        Mehr über unsere genaue Vorgehensweise erfährst du in unserem Beitrag über Projektfinanzierung.
+                    "
+                />
+                <Flexbox3Column>
                     {projects.length === 0 ? (
                         <h2>No added partners</h2>
                     ) : (
@@ -52,9 +60,14 @@ export default function Privacy({projects}) {
                             ))}
                         </>
                     )}
-                </div>
-                <h2>Upcoming Projekte</h2>
-                <div className={styles.CardLayout}>
+                </Flexbox3Column>
+                <SectionHeading
+                    heading="Die nächsten Projekte"
+                    description="
+                    Sobald eines des aktuell Projekte vollständig finanziert ist, werden diese Hilfsprojekte als nächstes gefördert.
+                    "
+                />
+                <Flexbox3Column>
                     {projects.length === 0 ? (
                         <h2>No added partners</h2>
                     ) : (
@@ -64,9 +77,14 @@ export default function Privacy({projects}) {
                             ))}
                         </>
                     )}
-                </div>
-                <h2>Finanzierte Projekte</h2>
-                <div className={styles.CardLayout}>
+                </Flexbox3Column>
+                <SectionHeading
+                    heading="Vollständig finanziert! 🎉"
+                    description="
+                    Sobald eines des aktuell Projekte vollständig finanziert ist, werden diese Hilfsprojekte als nächstes gefördert.
+                    "
+                />
+                <Flexbox3Column>
                     {projects.length === 0 ? (
                         <h2>No added partners</h2>
                     ) : (
@@ -76,7 +94,7 @@ export default function Privacy({projects}) {
                             ))}
                         </>
                     )}
-                </div>
+                </Flexbox3Column>
             </Container>
         </>
     )

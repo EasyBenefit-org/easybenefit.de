@@ -170,7 +170,8 @@ model Project {
   ActiveTo           DateTime?
   CD                 DateTime         @default(dbgenerated("sysdatetime()"), map: "DF__Project__CD__71A7CADF")
   CU                 String           @default("SYSADMIN", map: "DF__Project__CU__729BEF18") @db.NVarChar(250)
-  Description        String
+  Description        String           @default("Eine kurze Projektbeschreibung: Was wollt ihr umsetzen? Wem helft ihr damit? Wie lange wird es dauern?")
+  ImageURL           String           @default("/img/project-titleImage-default.jpg") @db.NVarChar(200)
   DonationCategory   DonationCategory @relation(fields: [DonationCategoryID], references: [DonationCategoryID], onUpdate: NoAction, map: "FK_Project_DonationCategoryID")
   Organisation       Organisation     @relation(fields: [OrganisationID], references: [OrganisationID], onUpdate: NoAction, map: "FK_Project_OrganisationID")
 

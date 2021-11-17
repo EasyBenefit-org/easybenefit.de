@@ -16,7 +16,7 @@ export default function ProjectCard({ project }) {
                 <div className={styles.Category}>{project.DonationCategory.Name}</div>
             </div>
             <div className={styles.CardBody}>
-                <div className={styles.Title}>{project.Name}</div>
+                <div className={styles.Title}>{project.Name}- Der genaue Titel der Projekte folgt noch...</div>
                 <p className={styles.Text}>
                     Test 123
                 </p>

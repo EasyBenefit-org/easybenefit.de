@@ -1,0 +1,7 @@
+.CardLayout {
+    display: flex;
+    gap: 30px;
+    &>* {
+        flex: 0 0 calc(33.33% - (30px * 2 / 3));
+    }
+}

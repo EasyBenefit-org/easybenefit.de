@@ -41,6 +41,31 @@ export default function Privacy({projects}) {
                 SubHeading="Das fördern wir!"
             />
             <Container>
+                <h2>Aktuelle Projekte</h2>
+                <div className={styles.CardLayout}>
+                    {projects.length === 0 ? (
+                        <h2>No added partners</h2>
+                    ) : (
+                        <>
+                            {projects.map((project, i) => (
+                                <ProjectCard project={project} key={i}/>
+                            ))}
+                        </>
+                    )}
+                </div>
+                <h2>Upcoming Projekte</h2>
+                <div className={styles.CardLayout}>
+                    {projects.length === 0 ? (
+                        <h2>No added partners</h2>
+                    ) : (
+                        <>
+                            {projects.map((project, i) => (
+                                <ProjectCard project={project} key={i}/>
+                            ))}
+                        </>
+                    )}
+                </div>
+                <h2>Finanzierte Projekte</h2>
                 <div className={styles.CardLayout}>
                     {projects.length === 0 ? (
                         <h2>No added partners</h2>

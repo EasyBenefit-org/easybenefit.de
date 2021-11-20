@@ -159,13 +159,13 @@ model Organisation {
 }
 
 model Project {
-  ProjectID          Int              @id(map: "PK_Project") @default(autoincrement())
-  OrganisationID     Int
-  DonationCategoryID Int
-  Name               String           @db.NVarChar(250)
-  Alias              String           @db.NVarChar(250)
-  AmountTarget       Decimal          @db.Decimal(18, 0)
-  AmountCurrent      Decimal          @db.Decimal(18, 0)
+  ProjectID           Int               @id(map: "PK_Project") @default(autoincrement())
+  OrganisationID      Int
+  DonationCategoryID  Int
+  Name                String            @db.NVarChar(250)
+  Slug                String            @db.NVarChar(50)
+  AmountTarget        Decimal           @db.Decimal(18, 0)
+  AmountCurrent       Decimal           @db.Decimal(18, 0)
   ActiveFrom         DateTime?
   ActiveTo           DateTime?
   CD                 DateTime         @default(dbgenerated("sysdatetime()"), map: "DF__Project__CD__71A7CADF")

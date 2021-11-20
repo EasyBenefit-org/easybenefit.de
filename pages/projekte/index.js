@@ -11,22 +11,22 @@ import prisma from 'lib/prisma';
 import Flexbox3Column from 'components/Layouts/Flexbox3Column';
 
 export async function getStaticProps() {
-    // Prisma SQL lookup
-    const projects = await prisma.project.findMany({
-        include: {
-            DonationCategory: true
-        }
-    })
-    // Stringify and Pars to eliminate Date and Decimal serialization error
-    const projectsString = await JSON.stringify(projects)
-    const projectsJSON = await JSON.parse(projectsString)
-
-    return {
-        props: {
-            projects: projectsJSON
-        },
-    };
-  }
+  // Prisma SQL lookup
+  const projects = await prisma.project.findMany({
+    include: {
+      DonationCategory: true
+    }
+  })
+  // Stringify and Pars to eliminate Date and Decimal serialization error
+  const projectsString = await JSON.stringify(projects)
+  const projectsJSON = await JSON.parse(projectsString)
+  // Return
+  return {
+    props: {
+      projects: projectsJSON
+    },
+  };
+}
 
 // Content
 export default function Privacy({projects}) {

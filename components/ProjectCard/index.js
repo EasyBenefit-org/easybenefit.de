@@ -1,5 +1,6 @@
 // Import Modules
 import Image from 'next/image'
+import Link from 'next/link'
 // Import Styles
 import styles from './ProjectCard.module.scss'
 
@@ -16,7 +17,9 @@ export default function ProjectCard({ project }) {
                 <div className={styles.Category}>{project.DonationCategory.Name}</div>
             </div>
             <div className={styles.CardBody}>
-                <div className={styles.Title}>{project.Name}- Der genaue Titel der Projekte folgt noch...</div>
+              <Link href={"/projekte/" + project.Slug}>
+                <a className={styles.Title}>{project.Name}</a>
+              </Link>
                 <p className={styles.Text}>
                     {project.Description}
                 </p>

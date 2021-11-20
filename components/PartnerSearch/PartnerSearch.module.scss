@@ -21,7 +21,7 @@
             flex: 0 1 calc(33.33% - (20px * 2 / 3));
         }
         @include ScreenSize(laptop) {
-            flex: 0 1 calc(25% - (30px * 3 / 4));
+            flex: 0 1 calc(25% - (20px * 3 / 4));
         }
         @include ScreenSize(desktop) {
             flex: 0 1 calc(20% - (30px * 4 / 5));

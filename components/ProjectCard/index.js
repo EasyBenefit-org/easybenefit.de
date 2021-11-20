@@ -24,12 +24,10 @@ export default function ProjectCard({ project }) {
                     {project.Description}
                 </p>
                 <div className={styles.Values}>
-                    <div>{parseInt(project.AmountTarget).toLocaleString("de-DE", {style:'currency',currency:'EUR',minimumFractionDigits:'0'})}</div>
+                    <div>{parseInt(project.AmountCurrent).toLocaleString("de-DE", {style:'currency',currency:'EUR',minimumFractionDigits:'0'})}</div>
                     <div>{parseInt(project.AmountTarget).toLocaleString("de-DE", {style:'currency',currency:'EUR',minimumFractionDigits:'0'})}</div>
                 </div>
-                <progress className={styles.Progress} value="125000" max={project.AmountTarget}>
-                    Hallo?
-                </progress>
+                <progress className={styles.Progress} value={project.AmountCurrent} max={project.AmountTarget} />
             </div>
         </div>
     )
